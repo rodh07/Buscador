@@ -1,0 +1,8 @@
+CREATE TABLE PESSOA (
+	id serial,
+	nome varchar(255),
+	idade int,
+	profissao varchar(255),
+	primary key (id));
+	
+	//
