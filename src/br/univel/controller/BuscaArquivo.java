@@ -11,14 +11,12 @@ public class BuscaArquivo implements Callable<List<String>> {
 
 	private String busca;
 	private String dir;
+	List<String> arquivos = new ArrayList<String>();
 
 	public BuscaArquivo(final String busca, final String dir) {
 		this.busca = busca;
 		this.dir = dir;
-
 	}
-
-	List<String> arquivos = new ArrayList<String>();
 
 	public List<String> call() throws Exception {
 

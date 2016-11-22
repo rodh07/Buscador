@@ -15,8 +15,9 @@ public class BancoPostgres {
 	private static final String PASS = "123";
 
 	public static ResultSet rs;
-	public Statement stmt;
 	public Connection con;
+	public Statement stmt;
+	
 
 	public static Connection getConnection() {
 
@@ -26,19 +27,6 @@ public class BancoPostgres {
 			JOptionPane.showMessageDialog(null, "Erro ao conectar com o banco de dados. \n\n" + e, "Atenção",
 					JOptionPane.ERROR_MESSAGE);
 			throw new RuntimeException(e);
-		}
-	}
-
-	public static void close(ResultSet rs, Statement stmt, Connection con) {
-		try {
-			if (rs != null && !rs.isClosed())
-				rs.close();
-			else if (stmt != null && !stmt.isClosed())
-				stmt.close();
-			else if (con != null && !con.isClosed())
-				con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 

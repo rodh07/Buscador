@@ -34,8 +34,8 @@ import br.univel.controller.GoogleSearchApi;
 import br.univel.dao.PessoaController;
 import br.univel.model.BD;
 import br.univel.model.Pessoa;
-import br.univel.model.TabelaMysqlModel;
-import br.univel.model.TabelaPostgresModel;
+import br.univel.model.MysqlTableModel;
+import br.univel.model.PostgresTableModel;
 
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -51,7 +51,7 @@ public class Main extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtBusca;
 	private JTabbedPane tabbedPane;
-	private JPanel pnPostgres;
+	private JPanel painelPostg;
 	private JPanel pnMysql;
 	private JPanel painel;
 	private JPanel painelGoogle;
@@ -59,8 +59,8 @@ public class Main extends JFrame {
 	private JLabel lblDir;
 	private JTextField txtDir;
 
-	private TabelaMysqlModel mysqlModel;
-	private TabelaPostgresModel postgresModel;
+	private MysqlTableModel mysqlModel;
+	private PostgresTableModel postgresModel;
 	private JScrollPane scrollPane_1;
 	private JTextArea txtPesquisaGoogle;
 	private JScrollPane scrollPane_2;
@@ -163,14 +163,14 @@ public class Main extends JFrame {
 		txtArquivos = new JTextArea();
 		scrollPane_2.setViewportView(txtArquivos);
 
-		pnPostgres = new JPanel();
-		tabbedPane.addTab("Postgres", null, pnPostgres, null);
+		painelPostg = new JPanel();
+		tabbedPane.addTab("postgres", null, painelPostg, null);
 		GridBagLayout gbl_pnPostgres = new GridBagLayout();
 		gbl_pnPostgres.columnWidths = new int[] { 0, 0 };
 		gbl_pnPostgres.rowHeights = new int[] { 0, 0, 0 };
 		gbl_pnPostgres.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
 		gbl_pnPostgres.rowWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		pnPostgres.setLayout(gbl_pnPostgres);
+		painelPostg.setLayout(gbl_pnPostgres);
 
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -178,13 +178,13 @@ public class Main extends JFrame {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-		pnPostgres.add(scrollPane, gbc_scrollPane);
+		painelPostg.add(scrollPane, gbc_scrollPane);
 
 		tblPostgres = new JTable();
 		scrollPane.setViewportView(tblPostgres);
 
 		pnMysql = new JPanel();
-		tabbedPane.addTab("MySql", null, pnMysql, null);
+		tabbedPane.addTab("mySql", null, pnMysql, null);
 		GridBagLayout gbl_pnMysql = new GridBagLayout();
 		gbl_pnMysql.columnWidths = new int[] { 0, 0 };
 		gbl_pnMysql.rowHeights = new int[] { 0, 0 };
@@ -278,7 +278,7 @@ public class Main extends JFrame {
 		final Future<List<Pessoa>> listPessoa = es.submit(new PessoaController(busca, BD.POSTGRES));
 		try {
 			List<Pessoa> bdPostgres = listPessoa.get();
-			postgresModel = new TabelaPostgresModel(bdPostgres);
+			postgresModel = new PostgresTableModel(bdPostgres);
 			if (bdPostgres.size() == 0) {
 				JOptionPane.showMessageDialog(Main.this, "Busca não encontrada na utilização do banco POSTGRES!",
 						"ATENCAO", JOptionPane.ERROR_MESSAGE);
@@ -302,7 +302,7 @@ public class Main extends JFrame {
 
 		try {
 			List<Pessoa> bdMysql = listPessoa.get();
-			mysqlModel= new TabelaMysqlModel(bdMysql);
+			mysqlModel= new MysqlTableModel(bdMysql);
 			if (bdMysql.size() == 0) {
 				JOptionPane.showMessageDialog(Main.this, "Busca não encontrada na utilização do banco MYSQL", "ATENCAO!",
 						JOptionPane.WARNING_MESSAGE);

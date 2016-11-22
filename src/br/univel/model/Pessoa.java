@@ -27,7 +27,6 @@ public class Pessoa {
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -35,7 +34,6 @@ public class Pessoa {
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -43,7 +41,6 @@ public class Pessoa {
 	public Integer getIdade() {
 		return idade;
 	}
-
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
@@ -51,9 +48,7 @@ public class Pessoa {
 	public String getProfissao() {
 		return profissao;
 	}
-
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
 	}
-
 }

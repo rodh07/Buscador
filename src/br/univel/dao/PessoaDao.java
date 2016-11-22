@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,9 @@ public class PessoaDao {
 		this.bd = bd;
 	}
 
-	Connection con;
+	
 	ResultSet rs = null;
+	Connection con;
 	List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 	public List<Pessoa> getPessoas(Pessoa pessoa) {
@@ -63,5 +65,18 @@ public class PessoaDao {
 		String profissao = rs.getString("profissao");
 		
 		return new Pessoa(id, nome, idade, profissao);
+	}
+	
+	public static void close(ResultSet rs, Statement stmt, Connection con) {
+		try {
+			if (rs != null && !rs.isClosed())
+				rs.close();
+			else if (stmt != null && !stmt.isClosed())
+				stmt.close();
+			else if (con != null && !con.isClosed())
+				con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

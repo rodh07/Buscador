@@ -8,8 +8,9 @@ import br.univel.model.Pessoa;
 
 public class PessoaController implements Callable<List<Pessoa>> {
 
-	private String busca;
 	private BD bd;
+	private String busca;
+	
 
 	public PessoaController(final String busca, BD bd) {
 		this.busca = busca;

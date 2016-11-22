@@ -5,19 +5,24 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class TabelaPostgresModel extends AbstractTableModel {
+public class MysqlTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 	List<Pessoa> pessoas = new ArrayList<>();
 
-	public TabelaPostgresModel(List<Pessoa> pessoas) {
+	public MysqlTableModel(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 
 	}
 
+	public void incluir(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+		fireTableDataChanged();
+	}
+
 	@Override
 	public int getColumnCount() {
-		return 0;
+		return 3;
 	}
 
 	@Override
@@ -39,7 +44,6 @@ public class TabelaPostgresModel extends AbstractTableModel {
 			return pessoa.getIdade();
 		case 2:
 			return pessoa.getProfissao();
-
 		default:
 			return "Erro";
 		}
@@ -61,12 +65,5 @@ public class TabelaPostgresModel extends AbstractTableModel {
 		default:
 			return "Erro";
 		}
-
 	}
-
-	public void incluir(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
-		fireTableDataChanged();
-	}
-
 }

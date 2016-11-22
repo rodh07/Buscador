@@ -5,4 +5,11 @@ CREATE TABLE PESSOA (
 	profissao varchar(255),
 	primary key (id));
 	
-	//
+
+//INSERT INTO
+	
+insert into Pessoa(nome, idade, profissao) values ('Rodrigo', 21,'pedreiro');
+insert into Pessoa(nome, idade, profissao) values ('Rafael', 22, 'Analista de sistemas');
+insert into Pessoa(nome, idade, profissao) values ('Louver', 23, 'Analista de informacao');
+insert into Pessoa(nome, idade, profissao) values ('Sirigu', 24, 'Analista de suporte');
+insert into Pessoa(nome, idade, profissao) values ('Neuer', 28, 'Keeper');
