@@ -1,6 +1,6 @@
 package br.univel.model;
 
-public enum TipoBanco {
+public enum BD {
 
 	POSTGRES,
 

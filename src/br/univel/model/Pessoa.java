@@ -14,8 +14,14 @@ public class Pessoa {
 		this.profissao = profissao;
 		
 	}
-
+	
 	public Pessoa() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", profissao=" + profissao + "]";
 	}
 
 	public Integer getId() {
@@ -48,11 +54,6 @@ public class Pessoa {
 
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
-	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", profissao=" + profissao + "]";
 	}
 
 }

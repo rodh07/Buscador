@@ -14,14 +14,14 @@ public class GoogleSearchApi implements Callable<List<String>> {
 
 	private static final String GOOGLE_SEARCH_URL = "https://www.google.com/search?q=%s&num=%d";
 	private static final Integer numberOfRegister = 50;
-	private String criterio;
+	private String busca;
 
-	public GoogleSearchApi(final String criterio) {
-		this.criterio = criterio;
+	public GoogleSearchApi(final String busca) {
+		this.busca = busca;
 	}
 
 	public List<String> call() throws Exception {
-		final String searchURL = String.format(GOOGLE_SEARCH_URL, criterio, numberOfRegister);
+		final String searchURL = String.format(GOOGLE_SEARCH_URL, busca, numberOfRegister);
 		final org.jsoup.nodes.Document doc = Jsoup.connect(searchURL).userAgent("Mozilla/5.0").get();
 		final Elements results = doc.select("h3.r > a");
 		final List<String> response = new ArrayList<String>(numberOfRegister);

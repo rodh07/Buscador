@@ -1,55 +1,44 @@
 package br.univel.dao;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import br.univel.model.TipoBanco;
+import br.univel.model.BD;
 import br.univel.model.Pessoa;
 
 public class PessoaController implements Callable<List<Pessoa>> {
 
-	private String criterio;
-	private TipoBanco tipoBanco;
+	private String busca;
+	private BD bd;
 
-	public PessoaController(final String criterio, TipoBanco tipoBanco) {
-		this.criterio = criterio;
-		this.tipoBanco = tipoBanco;
+	public PessoaController(final String busca, BD bd) {
+		this.busca = busca;
+		this.bd = bd;
 	}
 
 	public List<Pessoa> call() throws Exception {
-		int temNumero = 0;
-		int numeroEncontrado = 0;
-
+		int numeroExistente = 0;
+		int realizandoBusca = 0;
+		
 		Pessoa pessoa = new Pessoa();
 
-		for (int i = 0; i < criterio.length(); i++) {
-
-			// Verifica se sï¿½o apenas letras na busca, se tiver numeros entra no
-			// if
-			if (Character.isDigit(criterio.charAt(i)) == true) {
-				temNumero++;
-				numeroEncontrado = Integer.parseInt(criterio);
+		for (int i = 0; i < busca.length(); i++) {
+			if (Character.isDigit(busca.charAt(i)) == true) {
+				numeroExistente++;
+				//realiza busca realizando conversão
+				realizandoBusca = Integer.parseInt(busca);
 				break;
 			}
-
 		}
+		pessoa.setNome(busca);
 
-		pessoa.setNome(criterio);
-
-		if (temNumero <= 0) {
-
+		if (numeroExistente <= 0) {
 			pessoa.setId(0);
 			pessoa.setIdade(0);
-
 		} else {
-			pessoa.setId(numeroEncontrado);
-			pessoa.setIdade(numeroEncontrado);
-
+			pessoa.setId(realizandoBusca);
+			pessoa.setIdade(realizandoBusca);
 		}
-
-		return new PessoaDao(tipoBanco).getPessoas(pessoa);
+		return new PessoaDao(bd).getPessoas(pessoa);
 	}
-
 }

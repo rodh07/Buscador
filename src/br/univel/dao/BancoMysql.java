@@ -8,11 +8,11 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-public class ConexaoPostgres {
+public class BancoMysql {
 
-	private static final String URL_BANCO = "jdbc:postgresql://localhost:5432/Buscador";
-	private static final String USER = "postgres";
-	private static final String PASS = "1";
+	private static final String URL_BANCO = "jdbc:mysql://localhost/buscador";
+	private static final String USER = "mysql";
+	private static final String PASS = "123";
 
 	public static ResultSet rs;
 	public Statement stmt;
@@ -33,13 +33,12 @@ public class ConexaoPostgres {
 		try {
 			if (rs != null && !rs.isClosed())
 				rs.close();
-			if (stmt != null && !stmt.isClosed())
+			else if (stmt != null && !stmt.isClosed())
 				stmt.close();
-			if (con != null && !con.isClosed())
+			else if (con != null && !con.isClosed())
 				con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 }
